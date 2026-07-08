@@ -5,6 +5,15 @@
 
 ---
 
+## 🌐 Live Hosted Deployments
+
+* **Frontend (Vercel)**: [https://ai-crm-hcp-module-puce.vercel.app/](https://ai-crm-hcp-module-puce.vercel.app/)
+* **Backend API (Render)**: [https://hcp-crm-backend-hrfz.onrender.com/](https://hcp-crm-backend-hrfz.onrender.com/)
+* **API Documentation (Swagger)**: [https://hcp-crm-backend-hrfz.onrender.com/docs](https://hcp-crm-backend-hrfz.onrender.com/docs)
+* **API Health Status**: [https://hcp-crm-backend-hrfz.onrender.com/health](https://hcp-crm-backend-hrfz.onrender.com/health)
+
+---
+
 ## Project Overview
 
 This is a full-stack AI-first CRM module that helps pharmaceutical field medical representatives log, manage, and analyse their interactions with Healthcare Professionals (HCPs). Instead of filling out rigid forms, reps can describe a visit in plain English — the LangGraph AI agent extracts all structured data, saves it to PostgreSQL, and generates pharma-specific follow-up suggestions automatically.
