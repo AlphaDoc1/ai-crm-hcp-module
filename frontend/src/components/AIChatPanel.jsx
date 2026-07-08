@@ -101,13 +101,15 @@ export default function AIChatPanel() {
   const lastToolUsed = useSelector(selectLastToolUsed);
 
   const [inputValue, setInputValue] = useState('');
-  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
   const isLoading = chatStatus === 'loading';
 
-  // Auto-scroll to latest message
+  // Auto-scroll inside the chat container to avoid window scrolling
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   }, [messages, isLoading]);
 
   // Build conversation history for context
@@ -202,6 +204,7 @@ export default function AIChatPanel() {
 
       {/* Messages area */}
       <div
+        ref={chatContainerRef}
         style={{
           flex: 1,
           overflowY: 'auto',
@@ -242,7 +245,6 @@ export default function AIChatPanel() {
         ))}
 
         {isLoading && <TypingIndicator />}
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input area */}
