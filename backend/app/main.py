@@ -95,6 +95,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         settings.cors_origin,        # http://localhost:3000 (from .env)
+        "https://ai-crm-hcp-module-puce.vercel.app",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:3001",     # fallback if React dev server bumps port
