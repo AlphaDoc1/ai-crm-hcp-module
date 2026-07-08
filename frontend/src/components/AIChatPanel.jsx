@@ -107,7 +107,7 @@ export default function AIChatPanel() {
 
   // Auto-scroll inside the chat container to avoid window scrolling
   useEffect(() => {
-    if (chatContainerRef.current) {
+    if (chatContainerRef.current && messages.length > 1) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages, isLoading]);
