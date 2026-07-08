@@ -1,0 +1,92 @@
+
+============================================================
+  INTEGRATION TEST - AI-CRM HCP Module (Stage 6)
+============================================================
+Backend: http://localhost:8000
+
+============================================================
+  1. Health Check
+============================================================
+  [PASS] GET /health -> status=ok, database=connected
+
+============================================================
+  2. HCP Search REST
+============================================================
+  [PASS] GET /api/hcps/search -> 10 HCPs found
+     - Dr. Ananya Desai | Hematology | Tata Memorial Centre, Mumbai
+     - Dr. Anil Sharma | Oncology | Apollo Hospitals, Delhi
+     - Dr. Kavitha Nair | Rheumatology | Amrita Institute, Kochi
+
+============================================================
+  3. POST /api/interactions (Form Submit)
+============================================================
+  [PASS] POST /api/interactions -> id=17, hcp=Dr. Anil Sharma, sentiment=positive
+
+============================================================
+  4. GET /api/interactions (list)
+============================================================
+  [PASS] GET /api/interactions -> total=17, returned 0 items
+
+============================================================
+  5. PUT /api/interactions/{id} (Edit)
+============================================================
+  [PASS] PUT /api/interactions/17 -> outcomes updated successfully
+
+============================================================
+  6. GET /api/interactions/1/follow-ups
+============================================================
+  [PASS] GET follow-ups for interaction 1 -> 9 follow-ups
+     [pending] Prepare a concise PowerPoint slide deck summarizing BOOST‑301 PFS
+     [pending] Send a personalized follow‑up email confirming the enrollment of 
+
+============================================================
+  7. POST /api/chat -- Tool: log_interaction
+============================================================
+  (Calling Groq API via full LangGraph graph - may take 15-30s)
+  [PASS] log_interaction -> HCP=Dr. Priya Mehta, id=18, sentiment=positive
+     Reply: ✅ Interaction logged successfully!  
+**ID:** 18 – Dr. Priya Mehta (Fortis Hospital, Gurugram)  
+
+*Meeting details captur
+
+============================================================
+  8. POST /api/chat -- Tool: search_hcp
+============================================================
+  (Calling Groq API via full LangGraph graph)
+  [PASS] search_hcp -> tool invoked correctly
+     Reply: **Dr. Sharma**  
+- **Specialty:** Unknown  
+- **Hospital:** Unknown  
+- **Recent Interactions (last 5):**  
+  | Interact
+
+============================================================
+  9. POST /api/chat -- Tool: suggest_followups
+============================================================
+  (Calling Groq API via full LangGraph graph)
+  [PASS] suggest_followups -> 3 suggestions
+     - Schedule a 30‑minute MSL‑led scientific exchange with Dr. Sharma’s resident team
+     - Send the full BOOST‑301 publication PDF to Dr. Sharma and CC the oncology depart
+     - Register Dr. Sharma for the August OncoBoost Advisory Board meeting and confirm 
+
+============================================================
+  10. POST /api/chat -- Tool: summarize_interaction
+============================================================
+  (Calling Groq API via full LangGraph graph)
+  [PASS] summarize_interaction -> HCP=Dr. Rajesh Iyer, confidence=high
+     Topics: The meeting covered the updated pediatric indication for NeuroCalm XR issued by DCGI and the revised
+
+============================================================
+  11. POST /api/chat -- Tool: edit_interaction
+============================================================
+  (Calling Groq API via full LangGraph graph)
+  [PASS] edit_interaction -> tool invoked for interaction 17
+     Reply: ✅ Interaction **17** has been updated.  
+
+- **Sentiment** set to *neutral*  
+- **Outcomes** updated to: *“Dr. requested 
+
+============================================================
+  STAGE 6 RESULTS: 11/11 passed, 0 failed
+============================================================
+  ALL TESTS PASSED! Stage 6 complete.
