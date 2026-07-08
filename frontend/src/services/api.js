@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000',
   timeout: 60000,          // 60s — LLM calls can take time
   headers: { 'Content-Type': 'application/json' },
 });
